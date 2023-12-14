@@ -19,8 +19,8 @@ public class StockService {
         this.restTemplate = restTemplate.build();
     }
 
-    public StockData getStockData() {
-        String apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=" + apiKey;
+    public StockData getStockData(String companySymbol) {
+        String apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + companySymbol + "&interval=1min&apikey=" + apiKey;
         return restTemplate.getForObject(apiUrl, StockData.class);
     }
 }

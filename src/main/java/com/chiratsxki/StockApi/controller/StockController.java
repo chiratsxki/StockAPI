@@ -3,6 +3,7 @@ package com.chiratsxki.StockApi.controller;
 import com.chiratsxki.StockApi.model.StockData;
 import com.chiratsxki.StockApi.service.StockService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +17,8 @@ public class StockController {
         this.stockService = stockService;
     }
 
-    @GetMapping
-    public StockData getStock() {
-        return stockService.getStockData();
+    @GetMapping("/{companySymbol}")
+    public StockData getStock(@PathVariable String companySymbol) {
+        return stockService.getStockData(companySymbol);
     }
 }
