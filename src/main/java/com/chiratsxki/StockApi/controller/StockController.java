@@ -2,13 +2,13 @@ package com.chiratsxki.StockApi.controller;
 
 import com.chiratsxki.StockApi.model.StockData;
 import com.chiratsxki.StockApi.service.StockService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/Microsoft")
+@RequestMapping("/stocks")
 public class StockController {
 
     private final StockService stockService;
@@ -21,4 +21,10 @@ public class StockController {
     public StockData getStock(@PathVariable String companySymbol) {
         return stockService.getStockData(companySymbol);
     }
+
+    @GetMapping("/{companySymbol}/global")
+    public String getCurrentStockPrice(@PathVariable String companySymbol) {
+        return stockService.getGlobalStockPrice(companySymbol);
+    }
+
 }
